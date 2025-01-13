@@ -41,6 +41,7 @@ requirements:
     - llvm >=14,<19
     - llvm-openmp >=14,<19
     {% if cuda_compiler_version != "None" %}
+    - cuda-compat      # [linux]
     - cuda-cudart-dev
     - cuda-driver-dev  # [linux]
     - cuda-version {{ cuda_compiler_version }}
