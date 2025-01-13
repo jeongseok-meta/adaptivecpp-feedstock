@@ -2,6 +2,12 @@
 
 set -exo pipefail
 
+if [[ "${target_platform}" == linux* ]]; then
+  with_opencl_backend=ON
+else
+  with_opencl_backend=OFF
+fi
+
 if [[ ${cuda_compiler_version} != "None" ]]; then
   with_cuda_backend=ON
 else
@@ -16,7 +22,7 @@ cmake \
   -DBUILD_SHARED_LIBS=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DWITH_CUDA_BACKEND=$with_cuda_backend \
-  -DWITH_OPENCL_BACKEND=OFF \
+  -DWITH_OPENCL_BACKEND=$with_opencl_backend \
   -DWITH_ROCM_BACKEND=OFF
 
 cmake --build build --parallel

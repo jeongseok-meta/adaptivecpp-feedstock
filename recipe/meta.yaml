@@ -34,6 +34,7 @@ requirements:
     - {{ stdlib('c') }}
     - cmake
     - ninja  # [not win]
+    - pkgconfig
     - spirv-tools
     {% if cuda_compiler_version != "None" %}
     - {{ compiler('cuda') }}
@@ -44,6 +45,7 @@ requirements:
     - libboost-devel
     - llvm >=14,<19
     - llvm-openmp >=14,<19
+    - ocl-icd  # [linux]
     {% if cuda_compiler_version != "None" %}
     # cuda-compat is needed for libcuda.so.1
     - cuda-compat      # [linux]
@@ -60,6 +62,7 @@ test:
     - test -f $PREFIX/lib/cmake/AdaptiveCpp/adaptivecpp-config.cmake  # [not win]
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-opencl${SHLIB_EXT}  # [linux]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
