@@ -12,7 +12,7 @@ source:
       - patches/fallback-missing-functions.patch  # [linux]
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage('adaptivecpp', max_pin='x.x') }}
   ignore_run_exports:
@@ -64,7 +64,7 @@ test:
     - test -f $PREFIX/lib/cmake/AdaptiveCpp/adaptivecpp-config.cmake  # [not win]
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
-    - test -f $PREFIX/lib/hipSYCL/librt-backend-opencl${SHLIB_EXT}  # [linux]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
