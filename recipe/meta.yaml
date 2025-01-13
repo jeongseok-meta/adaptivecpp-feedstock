@@ -33,8 +33,9 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
-    - ninja  # [not win]
-    - pkgconfig
+    - make       # [linux]
+    - ninja      # [not win]
+    - pkgconfig  # [linux]
     - spirv-tools
     {% if cuda_compiler_version != "None" %}
     - {{ compiler('cuda') }}
