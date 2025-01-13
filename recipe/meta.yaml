@@ -36,7 +36,6 @@ requirements:
     - make       # [linux]
     - ninja      # [not win]
     - pkgconfig  # [linux]
-    - spirv-tools
     {% if cuda_compiler_version != "None" %}
     - {{ compiler('cuda') }}
     - cuda-cudart-dev  # [build_platform != target_platform]
@@ -46,7 +45,9 @@ requirements:
     - libboost-devel
     - llvm >=14,<19
     - llvm-openmp >=14,<19
-    - ocl-icd  # [linux]
+    - llvm-spirv   # [linux]
+    - ocl-icd      # [linux]
+    - spirv-tools  # [linux]
     {% if cuda_compiler_version != "None" %}
     # cuda-compat is needed for libcuda.so.1
     - cuda-compat      # [linux]
