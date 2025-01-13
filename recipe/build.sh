@@ -4,9 +4,6 @@ set -exo pipefail
 
 if [[ ${cuda_compiler_version} != "None" ]]; then
   with_cuda_backend=ON
-
-  # cuda-compat provided libcuda.so.1
-  LDFLAGS="$LDFLAGS -Wl,-rpath-link,${PREFIX}/cuda-compat/"
 else
   with_cuda_backend=OFF
 fi

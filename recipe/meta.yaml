@@ -21,7 +21,8 @@ build:
     - llvm-openmp  # [not win]
   missing_dso_whitelist:
     # https://conda-forge.org/docs/maintainer/knowledge_base/#nvcudadll-cannot-be-found-on-windows
-    - "*/nvcuda.dll"   # [win]
+    - "*/nvcuda.dll"    # [win]
+    - "*/libcuda.so.1"  # [linux]
   skip: true  # [osx]
   skip: true  # [cuda_compiler_version == "11.8"]
   string: cpu_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
