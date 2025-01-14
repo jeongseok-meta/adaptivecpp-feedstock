@@ -121,24 +121,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_llvm_version16</td>
+              <td>osx_arm64_llvm_version16</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=24615&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_llvm_version16" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_llvm_version16" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_llvm_version17</td>
+              <td>osx_arm64_llvm_version17</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=24615&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_llvm_version17" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_llvm_version17" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_llvm_version18</td>
+              <td>osx_arm64_llvm_version18</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=24615&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_llvm_version18" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/adaptivecpp-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_llvm_version18" alt="variant">
                 </a>
               </td>
             </tr><tr>
