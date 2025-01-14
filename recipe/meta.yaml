@@ -43,7 +43,7 @@ requirements:
   host:
     - clangdev
     - libboost-devel
-    - llvm >=14,<19
+    - llvmdev >=14,<19
     - llvm-openmp >=14,<19
     - llvm-spirv   # [linux]
     - ocl-icd      # [linux]
@@ -64,7 +64,7 @@ test:
     - test -f $PREFIX/lib/cmake/AdaptiveCpp/adaptivecpp-config.cmake  # [not win]
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
-    - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux and cuda_compiler_version == "None"]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
