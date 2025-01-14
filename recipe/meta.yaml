@@ -55,6 +55,7 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
     {% endif %}
   run:
+    - clangdev  # [osx]
     - llvm {{ llvm_version }}
     - libllvm{{ llvm_version }}
     - llvm-openmp {{ llvm_version }}  # [osx]
