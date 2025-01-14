@@ -12,7 +12,7 @@ source:
       - patches/fallback-missing-functions.patch  # [linux]
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage('adaptivecpp', max_pin='x.x') }}
   ignore_run_exports:
@@ -25,16 +25,17 @@ build:
     - "*/libcuda.so.1"  # [linux]
   skip: true  # [osx]
   skip: true  # [cuda_compiler_version == "11.8"]
-  string: cpu_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+  string: cpu_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
-    - ninja  # [not win]
-    - spirv-tools
+    - make       # [linux]
+    - ninja      # [not win]
+    - pkgconfig  # [linux]
     {% if cuda_compiler_version != "None" %}
     - {{ compiler('cuda') }}
     - cuda-cudart-dev  # [build_platform != target_platform]
@@ -42,8 +43,11 @@ requirements:
   host:
     - clangdev
     - libboost-devel
-    - llvm >=14,<19
-    - llvm-openmp >=14,<19
+    - llvmdev {{ llvm_version }}
+    - llvm-openmp {{ llvm_version }}
+    - llvm-spirv   # [linux]
+    - ocl-icd      # [linux]
+    - spirv-tools  # [linux]
     {% if cuda_compiler_version != "None" %}
     # cuda-compat is needed for libcuda.so.1
     - cuda-compat      # [linux]
@@ -52,7 +56,8 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
     {% endif %}
   run:
-    - llvm >=14,<19
+    - llvm {{ llvm_version }}
+    - libllvm{{ llvm_version }}
 
 test:
   commands:
@@ -60,6 +65,7 @@ test:
     - test -f $PREFIX/lib/cmake/AdaptiveCpp/adaptivecpp-config.cmake  # [not win]
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux and cuda_compiler_version == "None"]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
