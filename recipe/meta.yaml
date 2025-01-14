@@ -25,8 +25,8 @@ build:
     - "*/libcuda.so.1"  # [linux]
   skip: true  # [osx]
   skip: true  # [cuda_compiler_version == "11.8"]
-  string: cpu_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+  string: cpu_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
@@ -43,8 +43,8 @@ requirements:
   host:
     - clangdev
     - libboost-devel
-    - llvmdev >=14,<19
-    - llvm-openmp >=14,<19
+    - llvmdev {{ llvm_version }}
+    - llvm-openmp {{ llvm_version }}
     - llvm-spirv   # [linux]
     - ocl-icd      # [linux]
     - spirv-tools  # [linux]
@@ -56,8 +56,8 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
     {% endif %}
   run:
-    - llvm >=14,<19
-    - libllvm*
+    - llvm {{ llvm_version }}
+    - libllvm{{ llvm_version }}
 
 test:
   commands:
