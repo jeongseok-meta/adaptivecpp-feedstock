@@ -57,7 +57,7 @@ requirements:
     {% endif %}
   run:
     - llvm >=14,<19
-    - llvmdev >=14,<19  # [linux]
+    - libllvm*
 
 test:
   commands:
