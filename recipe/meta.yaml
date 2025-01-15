@@ -12,7 +12,7 @@ source:
       - patches/fallback-missing-functions.patch  # [linux]
 
 build:
-  number: 5
+  number: 6
   run_exports:
     - {{ pin_subpackage('adaptivecpp', max_pin='x.x') }}
   ignore_run_exports:
@@ -23,8 +23,8 @@ build:
     # https://conda-forge.org/docs/maintainer/knowledge_base/#nvcudadll-cannot-be-found-on-windows
     - "*/nvcuda.dll"    # [win]
     - "*/libcuda.so.1"  # [linux]
-  skip: true  # [osx]
   skip: true  # [cuda_compiler_version == "11.8"]
+  skip: true  # [osx and x86_64]
   string: cpu_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_llvm{{ llvm_version }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
 
@@ -56,8 +56,10 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
     {% endif %}
   run:
+    - clangdev  # [osx]
     - llvm {{ llvm_version }}
     - libllvm{{ llvm_version }}
+    - llvm-openmp {{ llvm_version }}  # [osx]
 
 test:
   commands:
