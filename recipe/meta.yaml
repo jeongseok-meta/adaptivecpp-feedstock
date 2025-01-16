@@ -42,7 +42,7 @@ requirements:
     {% endif %}
   host:
     - clangdev
-    - hip-devel    # [linux-64]
+    - hipcc        # [linux-64]
     - libboost-devel
     - llvmdev {{ llvm_version }}
     - llvm-openmp {{ llvm_version }}
