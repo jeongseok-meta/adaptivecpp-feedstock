@@ -58,6 +58,7 @@ requirements:
     {% endif %}
   run:
     - clangdev  # [osx]
+    - hip-runtime-amd  # [linux and x86_64]
     - llvm {{ llvm_version }}
     - libllvm{{ llvm_version }}
     - llvm-openmp {{ llvm_version }}  # [osx]
@@ -69,6 +70,7 @@ test:
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux and cuda_compiler_version == "None"]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-hip${SHLIB_EXT}  # [linux and x86_64]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
