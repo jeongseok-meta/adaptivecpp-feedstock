@@ -23,7 +23,7 @@ cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DWITH_CUDA_BACKEND=$with_cuda_backend \
   -DWITH_OPENCL_BACKEND=$with_opencl_backend \
-  -DWITH_ROCM_BACKEND=OFF
+  -DWITH_ROCM_BACKEND=ON
 
 cmake --build build --parallel
 
