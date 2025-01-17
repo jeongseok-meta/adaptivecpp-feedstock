@@ -12,7 +12,7 @@ source:
       - patches/fallback-missing-functions.patch  # [linux]
 
 build:
-  number: 6
+  number: 7
   run_exports:
     - {{ pin_subpackage('adaptivecpp', max_pin='x.x') }}
   ignore_run_exports:
@@ -42,6 +42,7 @@ requirements:
     {% endif %}
   host:
     - clangdev
+    - hipcc        # [linux and x86_64]
     - libboost-devel
     - llvmdev {{ llvm_version }}
     - llvm-openmp {{ llvm_version }}
@@ -57,6 +58,7 @@ requirements:
     {% endif %}
   run:
     - clangdev  # [osx]
+    - hip-runtime-amd  # [linux and x86_64]
     - llvm {{ llvm_version }}
     - libllvm{{ llvm_version }}
     - llvm-openmp {{ llvm_version }}  # [osx]
@@ -68,6 +70,7 @@ test:
     - test -f $PREFIX/lib/libacpp-common${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-omp${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/hipSYCL/librt-backend-ocl${SHLIB_EXT}  # [linux and cuda_compiler_version == "None"]
+    - test -f $PREFIX/lib/hipSYCL/librt-backend-hip${SHLIB_EXT}  # [linux and x86_64]
     {% if cuda_compiler_version != "None" %}
     - test -f $PREFIX/lib/hipSYCL/librt-backend-cuda${SHLIB_EXT}  # [not win]
     {% endif %}
