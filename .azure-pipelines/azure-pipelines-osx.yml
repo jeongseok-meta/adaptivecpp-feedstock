@@ -17,6 +17,9 @@ jobs:
       osx_arm64_llvm_version18:
         CONFIG: osx_arm64_llvm_version18
         UPLOAD_PACKAGES: 'True'
+      osx_arm64_llvm_version19:
+        CONFIG: osx_arm64_llvm_version19
+        UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
 
